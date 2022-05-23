@@ -1,4 +1,4 @@
-// Get choice from computer //
+// Get choice from computer by getting an option from an array //
 
 function computerPlay() {
     let options = ['rock','paper','scissors'];
@@ -8,26 +8,50 @@ function computerPlay() {
 // Determine if player input is better or equal or loses to computer choice //
 
 function playRound(playerSelection, computerSelection) {
+
+    console.log(playerSelection);
+    console.log(computerSelection);
     if (playerSelection == computerSelection) {
+        console.log(`It's a draw`)
         return `It's a draw!`;
     } else if (playerSelection == "rock" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "rock") {
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
+        console.log(`${computerSelection} beats ${playerSelection}. You LOSE!!!`);
+        return `You lose!`;
     } else {
-        return `You win! ${playerSelection} beats ${computerSelection}`;
+        console.log(`${playerSelection} beats ${computerSelection}. You WIN!!!`)
+        return `You win!`;
     }
 }
 
 // Use game() to run playRound() 5 times //
+// If playRound results in a win += to count //
+// After 5 games, determineWinner to show score //
 
 function game() {
     let computerScore = 0;
     let playerScore = 0;
 
     for (let i=0; i<5; i++) {
-        playRound();
+        switch (playRound(prompt(`Rock, Paper or Scissors?`), computerPlay())) {
+            case `It's a draw!`:
+                break;
+            case `You lose!`:
+                computerScore += 1;
+                break;
+            default:
+                playerScore += 1;
+        }
     }
+    console.log(computerScore);
+    console.log(playerScore);
+    console.log(determineWinner(playerScore, computerScore));
 }
 
-const playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+// Function to determine a winner //
+function determineWinner(playerScore, computerScore) {
+    return (playerScore > computerScore) ? `YOU WIN!!!`
+        : (playerScore < computerScore) ? `YOU LOSE!!!`
+        : `DRAW`; 
+}
+
+game();
