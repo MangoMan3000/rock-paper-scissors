@@ -16,10 +16,12 @@ function playRound(playerSelection, computerSelection) {
         return `It's a draw!`;
     } else if (playerSelection == "rock" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "rock") {
         console.log(`${computerSelection} beats ${playerSelection}. You LOSE!!!`);
-        return `You lose!`;
+        computerScore += 1;
+        console.log(computerScore)
     } else {
         console.log(`${playerSelection} beats ${computerSelection}. You WIN!!!`)
-        return `You win!`;
+        playerScore += 1;
+        console.log(playerScore);
     }
 }
 
@@ -54,4 +56,13 @@ function determineWinner(playerScore, computerScore) {
         : `DRAW`; 
 }
 
-game();
+const btns = document.querySelectorAll('button');
+let computerScore = 0;
+let playerScore = 0;
+
+
+btns.forEach((button) => {
+    button.addEventListener('click', () =>  {
+        playRound(button.id, computerPlay());
+    });
+});
