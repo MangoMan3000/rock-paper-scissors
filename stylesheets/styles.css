@@ -20,7 +20,10 @@ button {
 }
 
 .scorecard {
-    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     border-style: solid;
     border-radius: 25%;
     border-width: 2px;
