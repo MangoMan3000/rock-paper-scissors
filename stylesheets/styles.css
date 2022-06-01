@@ -10,8 +10,17 @@ body {
     display: flex;
 }
 
+img {
+    height: 100px;
+    width: 100px;
+}
+
 button {
     margin: 25px;
+    height: 200px;
+    width: 200px;
+    font-size: xx-large;
+    border-radius: 50%;
 }
 
 .results {
